@@ -1,0 +1,11 @@
+runtime: python38
+service: client
+
+
+handlers:
+- url: /
+  static_files: www/corona.html
+  upload: www/corona.html
+
+- url: /js
+  static_dir: www/js
