@@ -4,7 +4,9 @@ steps:
   args: [
     'app', 
     'deploy', 
-    'app.yaml server.yaml client.yaml',
+    'app.yaml',
+    'server.yaml',
+    'client.yaml',
     '--version=$BUILD_ID',
     '--quiet'
     ]
