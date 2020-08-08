@@ -29,12 +29,7 @@ country
 * gcp main https://console.cloud.google.com/home/dashboard?project=learned-nimbus-285414
 * gcp project https://console.cloud.google.com/appengine?project=meg-corona-stats&serviceId=default
 * logs: https://console.cloud.google.com/logs/
-* server yaml file that works
-runtime: python38
-
-handlers:
-- url: /.*
-  script: auto
+* good tutorial: https://medium.com/@dmahugh_70618/deploying-a-flask-app-to-google-app-engine-faa883b5ffab
 
 
 # Git
@@ -42,3 +37,4 @@ handlers:
 * git add . 
 * git commit -m "initial version" 
 * git push
+* mirrored repo: https://source.cloud.google.com/meg-corona-stats/github_megregan_covid-stats
