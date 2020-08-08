@@ -30,6 +30,7 @@ country
 * gcp project https://console.cloud.google.com/appengine?project=meg-corona-stats&serviceId=default
 * logs: https://console.cloud.google.com/logs/
 * good tutorial: https://medium.com/@dmahugh_70618/deploying-a-flask-app-to-google-app-engine-faa883b5ffab
+* trigger: https://console.cloud.google.com/cloud-build/triggers?project=meg-corona-stats&folder&organizationId
 
 
 # Git

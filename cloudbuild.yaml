@@ -1,3 +1,11 @@
-- name: 'python:38'
-  entrypoint: 'bash'
+steps:
+- id: 'Deploy to Environment'
+  name: 'gcr.io/cloud-builders/gcloud'
+  args: [
+    'app', 
+    'deploy', 
+    'app.yaml server.yaml client.yaml',
+    '--version=$BUILD_ID',
+    '--quiet'
+    ]
   
