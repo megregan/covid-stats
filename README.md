@@ -22,7 +22,7 @@ country
 * project name is 'meg-corona-stats'
 * html project: meg-corona-html
 * https://console.cloud.google.com/home/dashboard?q=search&referrer=search&project=meg-corona-stats&folder=&organizationId=
-* browse https://meg-corona-stats.ew.r.appspot.com/  gcloud app browse
+* browse https://client-dot-meg-corona-stats.ew.r.appspot.com  gcloud app browse
 * how to deploy: at command line type: 
 ** cd Documents/Javascript/Summer_project/Server/
 **  gcloud app deploy app.yaml server.yaml client.yaml

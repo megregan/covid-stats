@@ -5,7 +5,10 @@ service: client
 handlers:
 - url: /
   static_files: www/corona.html
-  upload: www/.*
+  upload: www/corona.html
 
 - url: /js
   static_dir: www/js
+  
+  - url: /resource
+  static_dir: www/resource
