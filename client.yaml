@@ -15,3 +15,9 @@ handlers:
   
 - url: /fonts
   static_dir: www/fonts
+  
+- url: /images
+  static_dir: www/images
+  
+- url: /vendor
+  static_dir: www/vendor
