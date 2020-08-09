@@ -10,5 +10,8 @@ handlers:
 - url: /js
   static_dir: www/js
   
-- url: /resource
-  static_dir: www/resource
+- url: /css
+  static_dir: www/css
+  
+- url: /fonts
+  static_dir: www/fonts
