@@ -10,5 +10,5 @@ handlers:
 - url: /js
   static_dir: www/js
   
-  - url: /resource
+- url: /resource
   static_dir: www/resource
