@@ -40,3 +40,7 @@ country
 * git commit -m "initial version" 
 * git push
 * mirrored repo: https://source.cloud.google.com/meg-corona-stats/github_megregan_covid-stats
+
+# HTML
+* html template: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_webpage&stacked=h
+* html other templates: https://www.w3schools.com/w3css/w3css_templates.asp
