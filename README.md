@@ -9,6 +9,7 @@ country
 
 # Javascript
 * https://github.com/benkeen/country-region-selector - country selector 
+* single page web app: https://itnext.io/build-a-single-page-web-app-javascript-and-the-dom-90c99b08f8a9
 
 # Flask
 * flask tutorial: https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3 
