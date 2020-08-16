@@ -4,7 +4,7 @@
 * I created this project to learn Javascrip, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats.
 * I plan to expand this project by using machine learning to analyse the data I've collected. 
 * Here's a high level picture of what the architecture looks like. 
-!(Architecture)[www/images/architecture.png]
+![Architecture](www/images/architecture.png)
 * Below are project details, resources and tutorials that I've used. 
 
 ## COVID 19 stats 
