@@ -48,7 +48,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div id="aboutDiv">
       <h1 class="w3-text-teal">About this project</h1>
         <div class="w3-container">
-        <p> My name is Meg Regan and I'm a 2nd year data science student in NUIG, Ireland. <br> I created this project to learn Javascrip, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats. <br> I plan to expand this project by using machine learning to analyse the data I've collected. <br>Here's a high level picture of what the architecture looks like. </p>
+        <p> My name is Meg Regan and I'm a 2nd year data science student in NUIG, Ireland. <br> I created this project to learn JavaScript, Git, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats. <br> I plan to expand this project by using machine learning to analyse the data I've collected. <br>Here's a high level picture of what the architecture looks like. </p>
         <p> <img src="/images/architecture.png" alt="architecture"> </p>
         <p> For those intrested here's a <a href="https://github.com/megregan/covid-stats"> link </a> to the source code. </p>
         </div>
@@ -61,7 +61,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
         <div>
             Country: <select id="country-select" class="crs-country" data-region-id="one"  data-value="shortcode"></select>
         </div>
-        <div>
+        <div id="regionSelect">
             Region: <select id="one"></select>
         </div>
     </section>
@@ -113,6 +113,7 @@ function w3_close() {
             document.getElementById("globalDiv").style.display = "none";
             document.getElementById("countryDiv").style.display = "block";
             document.getElementById("aboutDiv").style.display = "none";
+            document.getElementById("regionSelect").style.display = "none";
         }
         function showCountryStats() {
             var countrySel = document.getElementById("country-select").value;
