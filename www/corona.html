@@ -25,6 +25,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a  href="#Global" class="w3-bar-item w3-button w3-theme-l1">Global</a>
     <a href="#Country" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Country</a>
+    <a href="#About" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
   </div>
 </div>
 
@@ -41,6 +42,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
       <h1 class="w3-text-teal">Global corona stats</h1>
         <div class="w3-container">
         <p id="globalStats"></p>
+        </div>
+    </div>
+    
+    <div id="aboutDiv">
+      <h1 class="w3-text-teal">About this project</h1>
+        <div class="w3-container">
+        <p> My name is Meg regan and I'm a 2nd year data science student in NUIG. <br> I created this project to learn Javascrip, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats. <br> I plan to expand this project by using machine learning to analyse the data I've collected. <br>Here's a high level picture of what the architecture looks like. </p>
+        <p> <img src="/images/architecture.png" alt="architecture"> </p>
         </div>
     </div>
       
@@ -102,6 +111,7 @@ function w3_close() {
         function getCountryStats() {
               document.getElementById("globalDiv").style.display = "none";
           document.getElementById("countryDiv").style.display = "block";
+            document.getElementById("aboutDiv").style.display = "none";
             var countrySel = document.getElementById("country-select").value;
             var regionSel = document.getElementById("one");
             var xhttp = new XMLHttpRequest();
@@ -130,6 +140,7 @@ function w3_close() {
         function getGlobalStats() {
           document.getElementById("globalDiv").style.display = "block";
           document.getElementById("countryDiv").style.display = "none";
+          document.getElementById("aboutDiv").style.display = "none";
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -150,6 +161,13 @@ function w3_close() {
           xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/global", true);
           xhttp.send();
         }
+      function getAboutInfo() {
+          document.getElementById("globalDiv").style.display = "none";
+          document.getElementById("countryDiv").style.display = "none";
+          document.getElementById("aboutDiv").style.display = "block";
+      }
+      
+      
     </script>
     <script>
 
@@ -159,7 +177,10 @@ function w3_close() {
             getGlobalStats();
         } else if (fragmentId == 'Country'){
             getCountryStats();
+        } else if (fragmentId == 'About'){
+            getAboutInfo();
         }
+        
     }
 
     if(!location.hash) {
