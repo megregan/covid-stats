@@ -17,7 +17,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   height: inherit;
 }
 </style>
-<body onload="getGlobalStats()">
+<body>
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -48,7 +48,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div id="aboutDiv">
       <h1 class="w3-text-teal">About this project</h1>
         <div class="w3-container">
-        <p> My name is Meg regan and I'm a 2nd year data science student in NUIG. <br> I created this project to learn Javascrip, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats. <br> I plan to expand this project by using machine learning to analyse the data I've collected. <br>Here's a high level picture of what the architecture looks like. </p>
+        <p> My name is Meg Regan and I'm a 2nd year data science student in NUIG, Ireland. <br> I created this project to learn Javascrip, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats. <br> I plan to expand this project by using machine learning to analyse the data I've collected. <br>Here's a high level picture of what the architecture looks like. </p>
         <p> <img src="/images/architecture.png" alt="architecture"> </p>
         </div>
     </div>
@@ -66,7 +66,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     </section>
     
     <section id="button">        
-        <button onclick="getCountryStats()">Get info</button>
+        <button onclick="showCountryStats()">Get info</button>
          <hr size="1" />
     </section>
     
@@ -109,9 +109,11 @@ function w3_close() {
 </script>
   <script>
         function getCountryStats() {
-              document.getElementById("globalDiv").style.display = "none";
-          document.getElementById("countryDiv").style.display = "block";
+            document.getElementById("globalDiv").style.display = "none";
+            document.getElementById("countryDiv").style.display = "block";
             document.getElementById("aboutDiv").style.display = "none";
+        }
+        function showCountryStats() {
             var countrySel = document.getElementById("country-select").value;
             var regionSel = document.getElementById("one");
             var xhttp = new XMLHttpRequest();
@@ -137,6 +139,7 @@ function w3_close() {
           xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/country/" + countrySel, true);
           xhttp.send();
         }
+      
         function getGlobalStats() {
           document.getElementById("globalDiv").style.display = "block";
           document.getElementById("countryDiv").style.display = "none";
