@@ -77,7 +77,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
           <section id="main_content">
         <h2>Select a counrty to view its corona virus stats</h2>
         <div>
-            Corona: <select id="corona-select" class="crs-corona" data-region-id="one"  data-value="shortcode"></select>
+            Corona: <select id="country-select" class="crs-country" data-region-id="one"  data-value="shortcode"></select>
         </div>
         <div id="regionSelect">
             Region: <select id="one"></select>
@@ -134,17 +134,17 @@ function w3_close() {
             document.getElementById("regionSelect").style.display = "none";
         }
         function showCoronaStats() {
-            var coronaSel = document.getElementById("corona-select").value;
+            var coronaSel = document.getElementById("country-select").value;
             var regionSel = document.getElementById("one");
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
               if (this.readyState == 4 && this.status == 200) {
                   var coronaStats = JSON.parse(this.responseText);
                 var txt = "<table  class=\"w3-table-all w3-hoverable\"> <tr> <th>Corona stats</th><th>Value</th></tr>";
-                txt += "<tr> <td>Corona flag</td><td><img src=" + coronaStats.coronaInfo.flag + "></td></tr>"
+                txt += "<tr> <td>Country flag</td><td><img src=" + coronaStats.countryInfo.flag + "></td></tr>"
                 for (var x in coronaStats) {
                     var value = coronaStats[x];
-                    if (x == 'coronaInfo') {
+                    if (x == 'countryInfo') {
                         continue;
                     } else if (x =="updated") {
                         value = new Date(value);
@@ -156,7 +156,7 @@ function w3_close() {
                 document.getElementById("location_info-corona").innerHTML = txt;
             }
           };
-          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/corona/" + coronaSel, true);
+          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/country/" + coronaSel, true);
           xhttp.send();
         }
       
@@ -164,25 +164,6 @@ function w3_close() {
           document.getElementById("sentimentDiv").style.display = "block";
           document.getElementById("coronaDiv").style.display = "none";
           document.getElementById("aboutDiv").style.display = "none";
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var sentimentStats = JSON.parse(this.responseText);
-                myObj = sentimentStats["results"][0];
-                var txt = "<table  class=\"w3-table-all w3-hoverable\" > <tr> <th>Sentiment stats</th><th>Value</th></tr>";
-                for (var x in myObj) {
-                    if (x == 'source') {
-                        continue;
-                    }
-                    txt += "<tr><td>" + x.replace(/_/g, " ") + "</td>";
-                    txt += "<td>" + myObj[x]+ "</td></tr>";
-                }
-                txt += "</table>"   
-                document.getElementById("sentimentStats").innerHTML = txt;
-            }
-          };
-          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/sentiment", true);
-          xhttp.send();
         }
       
       function showSentiment() {
