@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a  href="#Global" class="w3-bar-item w3-button w3-theme-l1">Global</a>
+    <a href="#Sentiment" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Sentiment</a>
+    <a href="#About" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
+  </div>
+</div>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main" >
+
+  <div class="w3-row w3-padding-64">
+      
+    <div id="globalDiv">
+      <h1 class="w3-text-teal">Global corona stats</h1>
+        <div class="w3-container">
+        <p id="globalStats"></p>
+        </div>
+    </div>
+    
+    <div id="aboutDiv">
+      <h1 class="w3-text-teal">About this project</h1>
+        <div class="w3-container">
+        <p> My name is Meg Regan and I'm a 2nd year data science student in NUIG, Ireland. <br> I created this project to learn JavaScript, Git, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats. <br> I plan to expand this project by using machine learning to analyse the data I've collected. <br>Here's a high level picture of what the architecture looks like. </p>
+        <p> <img src="/images/architecture.png" alt="architecture"> </p>
+        <p> For those intrested here's a <a href="https://github.com/megregan/covid-stats"> link </a> to the source code. </p>
+        </div>
+    </div>
+      
+    <div id="sentimentDiv">
+      <h1 class="w3-text-teal">Twitter Sentiment</h1>
+          <section id="main_content">
+        <h2>Input a word to see the sentiment breakdown</h2>
+        <div>
+            <label for="word">Word:</label>
+
+            <input type="text" id="word" name="word" required minlength="1" maxlength="100" size="10">
+        </div>
+    </section>
+    
+    <section id="button">        
+        <button onclick="showSentiment()">Get sentiment</button>
+         <hr size="1" />
+    </section>
+    
+    <section>
+        <p id="location_info-country"></p>
+        <p id="location_info-region"></p>
+    </section>
+        <div class="w3-container">
+        <p id="countryStats"></p>
+        </div>
+    </div>
+  </div>
+    
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+  <script>
+        function getSentiment() {
+            document.getElementById("globalDiv").style.display = "none";
+            document.getElementById("sentimentDiv").style.display = "block";
+            document.getElementById("aboutDiv").style.display = "none";
+            document.getElementById("regionSelect").style.display = "none";
+        }
+        function showSentiment() {
+            var wordSel = document.getElementById("word").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                  var countryStats = JSON.parse(this.responseText);
+                var txt = "<table  class=\"w3-table-all w3-hoverable\"> <tr> <th>Country stats</th><th>Value</th></tr>";
+                txt += "<tr> <td>Country flag</td><td><img src=" + countryStats.countryInfo.flag + "></td></tr>"
+                for (var x in countryStats) {
+                    var value = countryStats[x];
+                    if (x == 'countryInfo') {
+                        continue;
+                    } else if (x =="updated") {
+                        value = new Date(value);
+                    }
+                    txt += "<tr><td>" + x + "</td>";
+                    txt += "<td>" + value + "</td></tr>";
+                }
+                txt += "</table>"   
+                document.getElementById("location_info-country").innerHTML = txt;
+            }
+          };
+          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/sentiment/" + wordSel, true);
+          xhttp.send();
+        }
+      
+        function getGlobalStats() {
+          document.getElementById("globalDiv").style.display = "block";
+          document.getElementById("sentimentDiv").style.display = "none";
+          document.getElementById("aboutDiv").style.display = "none";
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var globalStats = JSON.parse(this.responseText);
+                myObj = globalStats["results"][0];
+                var txt = "<table  class=\"w3-table-all w3-hoverable\" > <tr> <th>Global stats</th><th>Value</th></tr>";
+                for (var x in myObj) {
+                    if (x == 'source') {
+                        continue;
+                    }
+                    txt += "<tr><td>" + x.replace(/_/g, " ") + "</td>";
+                    txt += "<td>" + myObj[x]+ "</td></tr>";
+                }
+                txt += "</table>"   
+                document.getElementById("globalStats").innerHTML = txt;
+            }
+          };
+          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/global", true);
+          xhttp.send();
+        }
+      function getAboutInfo() {
+          document.getElementById("globalDiv").style.display = "none";
+          document.getElementById("sentimentDiv").style.display = "none";
+          document.getElementById("aboutDiv").style.display = "block";
+      }
+      
+      
+    </script>
+    <script>
+
+    function loadContent(){
+        var fragmentId = location.hash.substr(1);
+        if (fragmentId == 'Global') {
+            getGlobalStats();
+        } else if (fragmentId == 'Sentiment'){
+            getSentiment();
+        } else if (fragmentId == 'About'){
+            getAboutInfo();
+        }
+        
+    }
+
+    if(!location.hash) {
+        location.hash = "#About";
+    }
+
+    loadContent();
+
+    window.addEventListener("hashchange", loadContent)
+    </script>
+    
+    <script src="js/crs.min.js"></script>
+
+</body>
+</html>
