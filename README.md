@@ -1,6 +1,6 @@
 ## Introduction
 
-* My name is Meg Regan and I'm a 2nd year data science student in NUIG, Ireland. 
+* My name is Meg Regan and I'm a 3nd year data science student in NUIG, Ireland. 
 * I created this project to learn Javascrip, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats.
 * I plan to expand this project by using machine learning to analyse the data I've collected. 
 * Here's a high level picture of what the architecture looks like. 
@@ -49,3 +49,6 @@
 # HTML
 * [HTML template used in project](https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_webpage&stacked=h)
 * [Other HTML templates](https://www.w3schools.com/w3css/w3css_templates.asp)
+
+# Machine learning
+* [machine learnin google tutorial](https://developers.google.com/machine-learning/problem-framing/cases)

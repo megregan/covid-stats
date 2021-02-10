@@ -23,8 +23,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a  href="#Global" class="w3-bar-item w3-button w3-theme-l1">Global</a>
-    <a href="#Country" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Country</a>
+    <a  href="#Sentiment" class="w3-bar-item w3-button w3-theme-l1">Sentiment</a>
+    <a href="#Corona" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Coronavirus</a>
     <a href="#About" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
   </div>
 </div>
@@ -38,10 +38,28 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row w3-padding-64">
       
-    <div id="globalDiv">
-      <h1 class="w3-text-teal">Global corona stats</h1>
+    <div id="sentimentDiv">
+      <h1 class="w3-text-teal">Twitter Sentiment</h1>
+          <section id="main_content">
+        <h2>Input a topic to see the sentiment breakdown</h2>
+        <div>
+            <label for="word">Word:</label>
+
+            <input type="text" id="word" name="word" required minlength="1" maxlength="100" size="10">
+        </div>
+    </section>
+    
+    <section id="button">        
+        <button onclick="showSentiment()">Get sentiment</button>
+         <hr size="1" />
+    </section>
+    
+    <section>
+        <p id="sentiment_info"></p>
+        <p id="sentiment_info_2"></p>
+    </section>
         <div class="w3-container">
-        <p id="globalStats"></p>
+        <p id="countryStats"></p>
         </div>
     </div>
     
@@ -54,12 +72,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
         </div>
     </div>
       
-    <div id="countryDiv">
-      <h1 class="w3-text-teal">Country corona virus stats</h1>
+    <div id="coronaDiv">
+      <h1 class="w3-text-teal">Corona corona virus stats</h1>
           <section id="main_content">
         <h2>Select a counrty to view its corona virus stats</h2>
         <div>
-            Country: <select id="country-select" class="crs-country" data-region-id="one"  data-value="shortcode"></select>
+            Corona: <select id="corona-select" class="crs-corona" data-region-id="one"  data-value="shortcode"></select>
         </div>
         <div id="regionSelect">
             Region: <select id="one"></select>
@@ -67,16 +85,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     </section>
     
     <section id="button">        
-        <button onclick="showCountryStats()">Get info</button>
+        <button onclick="showCoronaStats()">Get info</button>
          <hr size="1" />
     </section>
     
     <section>
-        <p id="location_info-country"></p>
+        <p id="location_info-corona"></p>
         <p id="location_info-region"></p>
     </section>
         <div class="w3-container">
-        <p id="countryStats"></p>
+        <p id="coronaStats"></p>
         </div>
     </div>
   </div>
@@ -109,24 +127,24 @@ function w3_close() {
 }
 </script>
   <script>
-        function getCountryStats() {
-            document.getElementById("globalDiv").style.display = "none";
-            document.getElementById("countryDiv").style.display = "block";
+        function getCoronaStats() {
+            document.getElementById("sentimentDiv").style.display = "none";
+            document.getElementById("coronaDiv").style.display = "block";
             document.getElementById("aboutDiv").style.display = "none";
             document.getElementById("regionSelect").style.display = "none";
         }
-        function showCountryStats() {
-            var countrySel = document.getElementById("country-select").value;
+        function showCoronaStats() {
+            var coronaSel = document.getElementById("corona-select").value;
             var regionSel = document.getElementById("one");
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
               if (this.readyState == 4 && this.status == 200) {
-                  var countryStats = JSON.parse(this.responseText);
-                var txt = "<table  class=\"w3-table-all w3-hoverable\"> <tr> <th>Country stats</th><th>Value</th></tr>";
-                txt += "<tr> <td>Country flag</td><td><img src=" + countryStats.countryInfo.flag + "></td></tr>"
-                for (var x in countryStats) {
-                    var value = countryStats[x];
-                    if (x == 'countryInfo') {
+                  var coronaStats = JSON.parse(this.responseText);
+                var txt = "<table  class=\"w3-table-all w3-hoverable\"> <tr> <th>Corona stats</th><th>Value</th></tr>";
+                txt += "<tr> <td>Corona flag</td><td><img src=" + coronaStats.coronaInfo.flag + "></td></tr>"
+                for (var x in coronaStats) {
+                    var value = coronaStats[x];
+                    if (x == 'coronaInfo') {
                         continue;
                     } else if (x =="updated") {
                         value = new Date(value);
@@ -135,23 +153,23 @@ function w3_close() {
                     txt += "<td>" + value + "</td></tr>";
                 }
                 txt += "</table>"   
-                document.getElementById("location_info-country").innerHTML = txt;
+                document.getElementById("location_info-corona").innerHTML = txt;
             }
           };
-          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/country/" + countrySel, true);
+          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/corona/" + coronaSel, true);
           xhttp.send();
         }
       
-        function getGlobalStats() {
-          document.getElementById("globalDiv").style.display = "block";
-          document.getElementById("countryDiv").style.display = "none";
+        function getSentimentStats() {
+          document.getElementById("sentimentDiv").style.display = "block";
+          document.getElementById("coronaDiv").style.display = "none";
           document.getElementById("aboutDiv").style.display = "none";
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var globalStats = JSON.parse(this.responseText);
-                myObj = globalStats["results"][0];
-                var txt = "<table  class=\"w3-table-all w3-hoverable\" > <tr> <th>Global stats</th><th>Value</th></tr>";
+                var sentimentStats = JSON.parse(this.responseText);
+                myObj = sentimentStats["results"][0];
+                var txt = "<table  class=\"w3-table-all w3-hoverable\" > <tr> <th>Sentiment stats</th><th>Value</th></tr>";
                 for (var x in myObj) {
                     if (x == 'source') {
                         continue;
@@ -160,15 +178,33 @@ function w3_close() {
                     txt += "<td>" + myObj[x]+ "</td></tr>";
                 }
                 txt += "</table>"   
-                document.getElementById("globalStats").innerHTML = txt;
+                document.getElementById("sentimentStats").innerHTML = txt;
             }
           };
-          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/global", true);
+          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/sentiment", true);
           xhttp.send();
         }
+      
+      function showSentiment() {
+          var topic = document.getElementById("word").value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var pos = this.responseText;
+                var neg = 1- pos
+                txt_pos = 'Percentage of negative tweets' + String(neg)
+                txt_neg = 'Percentage of positive tweets' + String(pos)
+                document.getElementById("sentiment_info").innerHTML = txt_pos;
+                document.getElementById("sentiment_info_2").innerHTML = txt_neg;
+                
+            }
+          }
+          xhttp.open("GET", "https://meg-corona-stats.ew.r.appspot.com/sentiment/" + topic, true);
+          xhttp.send();
+      }
       function getAboutInfo() {
-          document.getElementById("globalDiv").style.display = "none";
-          document.getElementById("countryDiv").style.display = "none";
+          document.getElementById("sentimentDiv").style.display = "none";
+          document.getElementById("coronaDiv").style.display = "none";
           document.getElementById("aboutDiv").style.display = "block";
       }
       
@@ -178,10 +214,10 @@ function w3_close() {
 
     function loadContent(){
         var fragmentId = location.hash.substr(1);
-        if (fragmentId == 'Global') {
-            getGlobalStats();
-        } else if (fragmentId == 'Country'){
-            getCountryStats();
+        if (fragmentId == 'Sentiment') {
+            getSentimentStats();
+        } else if (fragmentId == 'Corona'){
+            getCoronaStats();
         } else if (fragmentId == 'About'){
             getAboutInfo();
         }
@@ -189,7 +225,7 @@ function w3_close() {
     }
 
     if(!location.hash) {
-        location.hash = "#Global";
+        location.hash = "#Sentiment";
     }
 
     loadContent();
