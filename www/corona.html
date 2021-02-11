@@ -66,14 +66,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div id="aboutDiv">
       <h1 class="w3-text-teal">About this project</h1>
         <div class="w3-container">
-        <p> My name is Meg Regan and I'm a 2nd year data science student in NUIG, Ireland. <br> I created this project to learn JavaScript, Git, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats. <br> I plan to expand this project by using machine learning to analyse the data I've collected. <br>Here's a high level picture of what the architecture looks like. </p>
+        <p> I created this project to learn JavaScript, Git, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats.Here's a high level picture of what the architecture looks like. </p>
         <p> <img src="/images/architecture.png" alt="architecture"> </p>
         <p> For those intrested here's a <a href="https://github.com/megregan/covid-stats"> link </a> to the source code. </p>
         </div>
     </div>
       
     <div id="coronaDiv">
-      <h1 class="w3-text-teal">Corona corona virus stats</h1>
+      <h1 class="w3-text-teal">Corona virus stats</h1>
           <section id="main_content">
         <h2>Select a counrty to view its corona virus stats</h2>
         <div>
@@ -171,10 +171,10 @@ function w3_close() {
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var pos = this.responseText;
-                var neg = 1- pos
-                txt_pos = 'Percentage of negative tweets' + String(neg)
-                txt_neg = 'Percentage of positive tweets' + String(pos)
+                var pos = parseFloat(this.responseText);
+                var neg = 1-pos;
+                var txt_pos = 'Percentage of positive tweets: ' + String(pos);
+                var txt_neg = 'Percentage of negative tweets: ' + String(neg);
                 document.getElementById("sentiment_info").innerHTML = txt_pos;
                 document.getElementById("sentiment_info_2").innerHTML = txt_neg;
                 

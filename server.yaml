@@ -5,3 +5,5 @@ handlers:
 - url: /corona
   script: auto
 
+- url: /nltk_data
+  static_dir: nltk_data
