@@ -16,10 +16,10 @@ I implemented parts of the continuous integration continuous deployment process 
 ## Screenshots
 
 * Here are some examples of the web app running. 
-![negative sentiment example](www/images/neg_sentiment.png)
-![positive sentiment example](www/images/pos_sentiment.png)
-![about](www/images/about)
-![Covid stats](www/images/country_stats)
+![negative sentiment example](docs/neg_sentiment.png)
+![positive sentiment example](docs/pos_sentiment.png)
+![about](docs/about)
+![Covid stats](docs/country_stats)
 
 * Below are project details, resources and tutorials that I've used. 
 
