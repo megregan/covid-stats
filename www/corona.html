@@ -173,8 +173,8 @@ function w3_close() {
             if (this.readyState == 4 && this.status == 200) {
                 var pos = parseFloat(this.responseText);
                 var neg = 1-pos;
-                var txt_pos = 'Percentage of positive tweets: ' + String(pos);
-                var txt_neg = 'Percentage of negative tweets: ' + String(neg);
+                var txt_pos = 'Percentage of positive tweets: ' + String(pos.toFixed(2));
+                var txt_neg = 'Percentage of negative tweets: ' + String(neg.toFixed(2));
                 document.getElementById("sentiment_info").innerHTML = txt_pos;
                 document.getElementById("sentiment_info_2").innerHTML = txt_neg;
                 
