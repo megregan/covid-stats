@@ -1,10 +1,18 @@
 ## Introduction
 
-* My name is Meg Regan and I'm a 3rd year data science student in NUIG, Ireland. 
 * I created this project to learn Javascrip, HTML, HTTP and GCP while also providing some useful, up-to-date COVID 19 stats.
-* I plan to expand this project by using machine learning to analyse the data I've collected. 
 * Here's a high level picture of what the architecture looks like. 
 ![Architecture](www/images/architecture.png)
+
+There are 7 main files in this projectl, corona.html, main.py, server.yaml, app.yaml, client.yaml, cloudbuild.yaml, nltk_data.py and requirements.txt. The corona.html is a HTML file. It's a single page web app. A single page web app is a web app that interacts with the browser by dynamically rewriting the page with new data from the web server, instead of the browser loading entirely new pages. The files deployed on GCP, this means that anyone can make a HTTP get request to access the web app from their browser. A http get request is used to request data from a specified source. The file also contains JavaScript. When triggered through user interaction this JavaScript will make a HTTP get request to the python flask app in order to get retrieve data from other sources on the internet. Asynchronous HHTP requests are used. This means you receive a call-back when the payload of the request has been received. This stops the browser from freezing when the request is being handled. The reason it has to make the request to the flask app instead of directly to wherever the data is from is because of CORS. CORS is a mechanism that restricts access to resources outside of a given domain, in this case it means that your browser cannot make get requests to anything but the files hosted on GCP. Therefore, is has to make a request to the flask app and then the flask app makes the HTTP request for the actual data. Once it receives the payload of this request it will then display this data in the browser.  
+
+The mian.py file is where the python flask app is. Flask is a lightweight Python framework for web applications that provides the basics for URL routing and page rendering. The flask app makes the HTTP get requests for the data. Once the data is received its manipulated, for example in the case of the twitter data the raw tweet text is extracted and sentiment analysis is performed. It then returns this back to the corona.html file. 
+
+The YAML files are configuration files that are necessary for configuring the GCP deployment When you deploy files to GCP they are hosted in the cloud. This means that the HTML file can be accessed via a browser. The server.yaml file configures the flask webserver with associated URLs. It also makes the NLTK corpora available to the flask server.The requirements.txt makes available the python libraries needed to the server.
+  The client.yaml configures the files that are needed on the client side, such as fonts, images and CSS for the browser. 
+
+I implemented parts of the continuous integration continuous deployment process by setting up a GCP mirror of my git hub repo. I also had to configure a cloudbuild.yaml file to instruct GCP on the steps required for deployment. This all means that when a change is committed to git hun it is automatically deployed in GCP as well. 
+
 * Below are project details, resources and tutorials that I've used. 
 
 ## COVID 19 stats 
