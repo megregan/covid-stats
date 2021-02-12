@@ -13,7 +13,13 @@ The YAML files are configuration files that are necessary for configuring the GC
 
 I implemented parts of the continuous integration continuous deployment process by setting up a GCP mirror of my git hub repo. I also had to configure a cloudbuild.yaml file to instruct GCP on the steps required for deployment. This all means that when a change is committed to git hun it is automatically deployed in GCP as well. 
 
-Here are some screens
+## Screenshots
+
+* Here are some examples of the web app running. 
+![negative sentiment example](www/images/neg_sentiment.png)
+![positive sentiment example](www/images/pos_sentiment.png)
+![about](www/images/about)
+![Covid stats](www/images/country_stats)
 
 * Below are project details, resources and tutorials that I've used. 
 
